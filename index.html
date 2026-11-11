@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criador de Anúncios | Distrito Digital</title>
+    <meta name="description" content="Ferramenta da rede Distrito Digital para montar textos de anúncio para o guia." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/png" href="./assets/favicon.png" />
+
+    <!-- Fonte Inter (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Cabeçalho -->
+    <header class="topo">
+      <div class="topo__conteudo">
+        <a class="topo__marca" href="https://distritodigital.com.br" target="_blank" rel="noopener">
+          <img src="./assets/img_logo.png" alt="Distrito Digital" width="80" height="40" />
+        </a>
+        <span class="topo__divisor" aria-hidden="true"></span>
+        <span class="topo__nome">Criador de Anúncios</span>
+      </div>
+    </header>
+
+    <main>
+      <!-- Apresentação -->
+      <section class="hero">
+        <p class="hero__chamada">Ferramenta da rede Distrito Digital</p>
+        <h1 class="hero__titulo">O anúncio do seu cliente, <span class="destaque">em um clique.</span></h1>
+        <p class="hero__texto">
+          Preencha os dados da empresa, escolha o modelo e pronto: o texto do anúncio é montado na hora,
+          pronto para o guia.
+        </p>
+      </section>
+
+      <!-- Etapas 1 e 2 -->
+      <section class="cartao etapas" aria-label="Dados e modelo do anúncio">
+        <form id="formulario" novalidate autocomplete="off">
+          <!-- ETAPA 1: dados da empresa -->
+          <fieldset class="etapa">
+            <legend class="etapa__titulo">
+              <span class="etapa__numero etapa__numero--verde" aria-hidden="true">1</span>
+              Dados da empresa
+            </legend>
+
+            <div class="exemplo-aviso" id="aviso-exemplo" hidden>
+              <span>Os campos estão preenchidos com <strong>dados de exemplo</strong>.</span>
+              <button type="button" class="link-botao" id="limpar-exemplo">Limpar exemplo</button>
+            </div>
+
+            <div class="campos">
+              <div class="campo">
+                <label for="empresa">Nome da empresa <span class="obrigatorio" aria-hidden="true">*</span></label>
+                <input id="empresa" name="empresa" type="text" maxlength="30" required aria-describedby="empresa-info" />
+                <p class="campo__info" id="empresa-info"><span data-aviso="empresa"></span><span class="campo__contador" data-contador-campo="empresa">0/30</span></p>
+              </div>
+
+              <div class="campo">
+                <label for="palavra_chave">Palavra-chave <span class="obrigatorio" aria-hidden="true">*</span></label>
+                <input id="palavra_chave" name="palavra_chave" type="text" required placeholder="ex.: vidraçaria" aria-describedby="palavra_chave-info" />
+                <p class="campo__info" id="palavra_chave-info"><span data-aviso="palavra_chave">Uma palavra só.</span></p>
+              </div>
+
+              <div class="campo campo--largo">
+                <label for="argumento_principal">Argumento principal <span class="obrigatorio" aria-hidden="true">*</span></label>
+                <input id="argumento_principal" name="argumento_principal" type="text" required placeholder="O principal diferencial da empresa" aria-describedby="argumento_principal-info" />
+                <p class="campo__info" id="argumento_principal-info"><span data-aviso="argumento_principal"></span></p>
+              </div>
+
+              <div class="campo">
+                <label for="cidade">Região ou cidade <span class="obrigatorio" aria-hidden="true">*</span></label>
+                <input id="cidade" name="cidade" type="text" required placeholder="ex.: Campinas, SP" aria-describedby="cidade-info" />
+                <p class="campo__info" id="cidade-info"><span data-aviso="cidade"></span></p>
+              </div>
+
+              <div class="campo">
+                <label for="atuacao">Atuação</label>
+                <select id="atuacao" name="atuacao">
+                  <option>Serviços</option>
+                  <option>Produtos</option>
+                  <option>Produtos e Serviços</option>
+                </select>
+              </div>
+
+              <div class="campo campo--largo">
+                <label for="mercado">Mercado <span class="obrigatorio" aria-hidden="true">*</span></label>
+                <input id="mercado" name="mercado" type="text" required placeholder="ex.: agência de publicidade" aria-describedby="mercado-info" />
+                <p class="campo__info" id="mercado-info"><span data-aviso="mercado"></span></p>
+              </div>
+
+              <div class="campo campo--largo">
+                <span class="rotulo" id="argumentos-rotulo">Argumentos ou itens <span class="opcional">(opcionais)</span></span>
+                <div class="campos-trio" role="group" aria-labelledby="argumentos-rotulo">
+                  <input name="argumento1" type="text" aria-label="Argumento ou item 1" placeholder="Argumento ou item 1" />
+                  <input name="argumento2" type="text" aria-label="Argumento ou item 2" placeholder="Argumento ou item 2" />
+                  <input name="argumento3" type="text" aria-label="Argumento ou item 3" placeholder="Argumento ou item 3" />
+                </div>
+              </div>
+
+              <div class="campo">
+                <label for="ano_fundacao">Ano de fundação <span class="opcional">(opcional)</span></label>
+                <input id="ano_fundacao" name="ano_fundacao" type="text" inputmode="numeric" placeholder="1998 ou 30/06/1998" aria-describedby="ano_fundacao-info" />
+                <p class="campo__info" id="ano_fundacao-info"><span data-aviso="ano_fundacao">Usado no modelo Tradição.</span></p>
+              </div>
+
+              <!-- INÍCIO CAMPO WHATSAPP (a confirmar com o cliente).
+                   Para remover, apague este bloco inteiro: o restante do sistema
+                   se adapta sozinho (checklist e modelos ignoram o campo). -->
+              <div class="campo">
+                <label for="whatsapp">WhatsApp <span class="opcional">(opcional)</span></label>
+                <input id="whatsapp" name="whatsapp" type="tel" inputmode="numeric" placeholder="(00) 00000-0000" maxlength="15" />
+              </div>
+              <!-- FIM CAMPO WHATSAPP -->
+            </div>
+          </fieldset>
+
+          <!-- ETAPA 2: escolha do modelo -->
+          <fieldset class="etapa">
+            <legend class="etapa__titulo">
+              <span class="etapa__numero etapa__numero--azul" aria-hidden="true">2</span>
+              Escolha o modelo
+            </legend>
+            <div class="modelos" id="modelos"><!-- cards gerados em main.js --></div>
+          </fieldset>
+        </form>
+      </section>
+
+      <!-- ETAPA 3: resultado -->
+      <section class="resultado" aria-labelledby="resultado-titulo">
+        <div class="resultado__cabecalho">
+          <div>
+            <h2 class="resultado__titulo" id="resultado-titulo">
+              <span class="etapa__numero etapa__numero--amarelo" aria-hidden="true">3</span>
+              Texto do anúncio
+            </h2>
+            <p class="resultado__subtitulo">Revise e edite direto nas caixas. Estando certo, copie e cole no anúncio do guia.</p>
+          </div>
+          <span class="selo-modelo" id="selo-modelo">Modelo: Tradição</span>
+        </div>
+
+        <p class="faltando" id="faltando" role="status" hidden></p>
+
+        <div class="resultado__grade">
+          <!-- Coluna principal: textos editáveis -->
+          <div class="cartao editor">
+            <div class="saida">
+              <div class="saida__topo">
+                <label for="saida-titulo">Título</label>
+                <span class="contador" id="contador-titulo">0/60</span>
+              </div>
+              <textarea id="saida-titulo" rows="1" class="saida__campo saida__campo--linha"></textarea>
+            </div>
+
+            <div class="saida">
+              <div class="saida__topo">
+                <label for="saida-texto">Texto do anúncio</label>
+                <span class="contador" id="contador-texto">0 caracteres</span>
+              </div>
+              <textarea id="saida-texto" rows="13" class="saida__campo"></textarea>
+            </div>
+
+            <div class="saida">
+              <div class="saida__topo">
+                <label for="saida-descricao">Descrição curta (Google)</label>
+                <span class="contador" id="contador-descricao">0/155</span>
+              </div>
+              <textarea id="saida-descricao" rows="3" class="saida__campo"></textarea>
+            </div>
+
+            <p class="aviso-edicao" id="aviso-edicao">
+              Alterar os dados ou o modelo gera o texto de novo e descarta as edições feitas aqui.
+            </p>
+
+            <div class="acoes" id="acoes">
+              <button type="button" class="botao botao--verde" id="copiar-texto">Copiar texto</button>
+              <button type="button" class="botao botao--azul" id="copiar-tudo">Copiar tudo</button>
+              <button type="button" class="botao botao--contorno" id="outra-versao">Gerar outra versão</button>
+              <button type="button" class="botao botao--contorno" id="novo-anuncio">Novo anúncio</button>
+            </div>
+
+            <div class="confirmacao" id="confirmacao" role="alertdialog" aria-labelledby="confirmacao-texto" hidden>
+              <p id="confirmacao-texto">Começar um novo anúncio? Todos os campos e textos serão apagados.</p>
+              <div class="acoes">
+                <button type="button" class="botao botao--perigo" id="confirmar-novo">Sim, limpar tudo</button>
+                <button type="button" class="botao botao--contorno" id="cancelar-novo">Cancelar</button>
+              </div>
+            </div>
+
+            <p class="versao-info" id="versao-info"></p>
+          </div>
+
+          <!-- Coluna lateral -->
+          <aside class="lateral" aria-label="Apoio ao anúncio">
+            <div class="cartao bloco">
+              <h3 class="bloco__titulo">Checklist de SEO local</h3>
+              <ul class="checklist" id="checklist"></ul>
+              <p class="checklist__resumo" id="checklist-resumo" aria-live="polite"></p>
+            </div>
+
+            <div class="cartao bloco">
+              <h3 class="bloco__titulo">Palavras-chave sugeridas</h3>
+              <ul class="chips" id="palavras-chave"></ul>
+              <p class="bloco__dica">Clique em uma palavra para copiar.</p>
+            </div>
+
+            <div class="bloco bloco--whatsapp">
+              <h3 class="bloco__titulo">Mensagem para o botão de WhatsApp</h3>
+              <p class="whatsapp-msg" id="whatsapp-msg"></p>
+              <button type="button" class="botao botao--contorno botao--pequeno" id="copiar-whatsapp">Copiar mensagem</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rodape">
+      <p>Ferramenta de uso exclusivo da rede Distrito Digital, idealizada por César Marcondes.</p>
+      <p>Desenvolvido por <strong>Gabriel Hansen</strong></p>
+    </footer>
+
+    <!-- Região para leitores de tela anunciarem "Copiado!" -->
+    <div class="sr-only" id="anuncio-status" aria-live="polite"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

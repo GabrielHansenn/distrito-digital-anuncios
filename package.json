@@ -1,0 +1,16 @@
+{
+  "name": "criador-anuncios-distrito-digital",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Criador de Anúncios da rede Distrito Digital (versão web, sem IA).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/generator.test.js tests/checklist.test.js"
+  },
+  "devDependencies": {
+    "vite": "^7.3.8"
+  }
+}
